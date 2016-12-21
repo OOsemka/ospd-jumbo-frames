@@ -1,3 +1,6 @@
+#this script has been tested in OSP7 and OSP8. It will probably not work in OSP9 and above due to a change in here http://docs.openstack.org/mitaka/networking-guide/config-mtu.html
+
+
 #!/bin/bash
 echo "******************* Steps to enable jumbo frames on tenant network"
 
@@ -6,9 +9,9 @@ SSH="ssh -o StrictHostKeyChecking=no"
 SCP="scp -o StrictHostKeyChecking=no"
 SSHUSER="heat-admin"
 source ~/stackrc
-COMPUTES=$(nova list | grep overcloud-compute | awk '{print $12}' | cut -f2 -d=)
-CONTROLLERS=$(nova list | grep overcloud-controller | awk '{print $12}' | cut -f2 -d=)
-CONTROLLER=$(nova list | grep overcloud-controller | awk '{print $12}' | head -1 | cut -f2 -d=)
+COMPUTES=$(nova list | grep compute | awk '{print $12}' | cut -f2 -d=)
+CONTROLLERS=$(nova list | grep controller | awk '{print $12}' | cut -f2 -d=)
+
 
 
 echo "******************* Step 1 - display current mtu configuration"
